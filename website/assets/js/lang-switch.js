@@ -5,6 +5,7 @@
 
 (function() {
   const STORAGE_KEY = 'realcap-lang-preference';
+  let initialized = false;
 
   /**
    * Get current language from URL path
@@ -55,7 +56,7 @@
     // Convert current path to target language
     if (targetLang === 'zh') {
       if (currentPath === '/' || currentPath === '/en' || currentPath.startsWith('/en/')) {
-        newPath = currentPath.replace(/^\/en/, '/zh').replace(/^\/$/, '/zh/');
+        newPath = currentPath.replace(/^\/en$/, '/zh/').replace(/^\/en/, '/zh').replace(/^\/$/, '/zh/');
       } else {
         newPath = '/zh/';
       }
@@ -90,6 +91,10 @@
    * Initialize language switch UI
    */
   function initLangSwitch() {
+    // Guard against multiple initialization
+    if (initialized) return;
+    initialized = true;
+
     const langButtons = document.querySelectorAll('.header-lang-btn');
     const currentLang = getCurrentLang();
 
