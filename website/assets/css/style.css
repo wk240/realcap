@@ -13,6 +13,10 @@
   --text-secondary: #94a3b8;
   --border-color: #334155;
 
+  /* RGB values for opacity variations */
+  --bg-primary-rgb: 26, 26, 46;
+  --accent-primary-rgb: 74, 222, 128;
+
   /* Typography */
   --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Consolas', monospace;
@@ -83,7 +87,8 @@ a:hover {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background: rgba(26, 26, 46, 0.95);
+  background: rgba(var(--bg-primary-rgb), 0.95);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
   z-index: 100;
@@ -129,6 +134,11 @@ a:hover {
   color: var(--text-primary);
 }
 
+.header-nav a:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
 .header-lang-switch {
   display: flex;
   gap: 8px;
@@ -156,6 +166,11 @@ a:hover {
 
 .header-lang-btn:hover:not(.active) {
   color: var(--text-primary);
+}
+
+.header-lang-btn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 /* Mobile Header */
@@ -218,6 +233,7 @@ a:hover {
   padding: 16px 32px;
   background: var(--accent-gradient);
   color: var(--bg-primary);
+  font-family: inherit;
   font-size: 1.1rem;
   font-weight: 700;
   border-radius: 12px;
@@ -228,7 +244,12 @@ a:hover {
 
 .hero-cta:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 40px rgba(74, 222, 128, 0.3);
+  box-shadow: 0 10px 40px rgba(var(--accent-primary-rgb), 0.3);
+}
+
+.hero-cta:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
 }
 
 @media (max-width: 768px) {
@@ -282,6 +303,15 @@ a:hover {
 .feature-card:hover {
   transform: translateY(-4px);
   border-color: var(--accent-primary);
+}
+
+.feature-card:focus-within {
+  border-color: var(--accent-primary);
+}
+
+.feature-card:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 .feature-icon {
@@ -353,6 +383,15 @@ a:hover {
   border-color: var(--accent-primary);
 }
 
+.blog-card:focus-within {
+  border-color: var(--accent-primary);
+}
+
+.blog-card:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
 .blog-card-title {
   font-size: 1.1rem;
   margin-bottom: 8px;
@@ -399,6 +438,11 @@ a:hover {
   font-size: 0.9rem;
 }
 
+.footer-links a:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
 .footer-social {
   display: flex;
   justify-content: center;
@@ -422,6 +466,11 @@ a:hover {
 .footer-social a:hover {
   color: var(--accent-primary);
   background: var(--bg-primary);
+}
+
+.footer-social a:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 .footer-copyright {
