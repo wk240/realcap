@@ -66,6 +66,7 @@ realcap-app-website/
 │   │   └── client-guide.html
 ├── sitemap.xml             # SEO 站点地图
 ├── robots.txt              # SEO 爬虫规则
+├── 404.html                # 自定义 404 页面
 ├── LICENSE                 # CC-BY-NC 3.0
 ├── README.md
 └── CNAME                   # GitHub Pages 域名绑定
@@ -75,6 +76,29 @@ realcap-app-website/
 - 采用目录结构：`/en/`（英文）、`/zh/`（中文）
 - 根目录 `index.html` 作为默认英文入口
 - Header 包含语言切换器，保存用户偏好到 localStorage
+
+### 2.3 多语言 SEO 配置（hreflang）
+
+**每个页面必须包含 hreflang 标签：**
+
+```html
+<!-- 英文页面 (index.html, /en/index.html) -->
+<link rel="canonical" href="https://realcap.app/">
+<link rel="alternate" hreflang="en" href="https://realcap.app/en/">
+<link rel="alternate" hreflang="zh" href="https://realcap.app/zh/">
+<link rel="alternate" hreflang="x-default" href="https://realcap.app/">
+
+<!-- 中文页面 (/zh/index.html) -->
+<link rel="canonical" href="https://realcap.app/zh/">
+<link rel="alternate" hreflang="en" href="https://realcap.app/en/">
+<link rel="alternate" hreflang="zh" href="https://realcap.app/zh/">
+<link rel="alternate" hreflang="x-default" href="https://realcap.app/">
+```
+
+**说明：**
+- `hreflang` 告诉搜索引擎每个页面的语言版本
+- `x-default` 指定默认页面（当用户语言不匹配时）
+- `canonical` 防止重复内容问题
 
 ---
 
@@ -133,11 +157,102 @@ realcap-app-website/
 
 ### 4.2 技术 SEO
 
-| 文件 | 内容 |
-|------|------|
-| robots.txt | 允许全站爬取，指向 sitemap.xml |
-| sitemap.xml | 包含所有页面 URL，提交到 Google/Bing |
-| JSON-LD | 产品信息结构化数据 |
+#### 4.2.1 robots.txt 配置
+
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://realcap.app/sitemap.xml
+
+# 可选：限制爬取频率
+Crawl-delay: 1
+```
+
+#### 4.2.2 sitemap.xml 配置
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- 英文首页 -->
+  <url>
+    <loc>https://realcap.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://realcap.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://realcap.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realcap.app/"/>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- 中文首页 -->
+  <url>
+    <loc>https://realcap.app/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://realcap.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://realcap.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realcap.app/"/>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- 博客、文档页面后续添加 -->
+</urlset>
+```
+
+#### 4.2.3 Schema JSON-LD 配置
+
+**每个页面 `<head>` 添加：**
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "RealCap",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Windows, macOS",
+  "description": "Trusted screenshot tool that prevents AI forgery and enables verification",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "100"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "RealCap",
+  "url": "https://realcap.app",
+  "logo": "https://realcap.app/assets/images/logo.png",
+  "sameAs": [
+    "https://twitter.com/realcap",
+    "https://github.com/realcap"
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "RealCap",
+  "url": "https://realcap.app",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://realcap.app/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+```
 
 ### 4.3 内容 SEO
 
@@ -153,9 +268,88 @@ realcap-app-website/
 4. AI检测功能 / AI Detection Feature
 5. 客户端使用指南 / Client Guide
 
-### 4.4 外部引流
+### 4.4 Open Graph & Twitter Cards
+
+#### 4.4.1 Open Graph 标签
+
+**英文页面：**
+```html
+<meta property="og:title" content="RealCap - Trusted Screenshot Tool">
+<meta property="og:description" content="Prevent AI forgery with trusted screenshots. Verify authenticity, capture secure proof.">
+<meta property="og:image" content="https://realcap.app/assets/images/og-image.png">
+<meta property="og:url" content="https://realcap.app/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:site_name" content="RealCap">
+```
+
+**中文页面：**
+```html
+<meta property="og:title" content="RealCap - 可信截图工具">
+<meta property="og:description" content="防AI伪造的可信截图工具。验证真实性，获取安全证明。">
+<meta property="og:image" content="https://realcap.app/assets/images/og-image-zh.png">
+<meta property="og:url" content="https://realcap.app/zh/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:site_name" content="RealCap">
+```
+
+#### 4.4.2 Twitter Cards
+
+```html
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RealCap - Trusted Screenshot Tool">
+<meta name="twitter:description" content="Prevent AI forgery with trusted screenshots. Verify authenticity.">
+<meta name="twitter:image" content="https://realcap.app/assets/images/og-image.png">
+<meta name="twitter:site" content="@realcap">
+```
+
+#### 4.4.3 OG 图片规范
+
+| 属性 | 规格 |
+|------|------|
+| 尺寸 | 1200 x 630 px |
+| 格式 | PNG 或 WebP |
+| 内容 | Hero 区域视觉 + 产品名称 + 核心卖点 |
+| 文件大小 | < 200KB（压缩优化） |
+
+### 4.5 图片 SEO 规范
+
+| 规范项 | 要求 |
+|--------|------|
+| 文件命名 | 描述性命名，如 `trusted-screenshot-hero.webp` |
+| Alt 文本 | 每个图片必须有描述性 alt，如 `RealCap trusted screenshot verification interface` |
+| 格式 | 优先 WebP，fallback PNG/JPG |
+| Lazy loading | `loading="lazy"` 属性 |
+| 响应式 | 使用 `<picture>` 元素或 `srcset` |
+
+### 4.6 外部引流
 - Twitter/LinkedIn/Reddit 发布内容链接
 - 提交网站到 Google Search Console、Bing Webmaster
+
+### 4.7 E-E-A-T 信任信号
+
+| 信号类型 | 实现方式 |
+|----------|----------|
+| **Experience** | 博客文章展示真实使用案例、技术原理截图 |
+| **Expertise** | 技术原理详解、AI 检测算法说明 |
+| **Authoritativeness** | GitHub 开源仓库链接、技术博客引用 |
+| **Trustworthiness** | Privacy Policy、Terms of Use、联系方式明确 |
+
+**必须添加的信任页面：**
+- `docs/en/privacy.html` / `docs/zh/privacy.html` — Privacy Policy
+- `docs/en/terms.html` / `docs/zh/terms.html` — Terms of Use
+- `docs/en/about.html` / `docs/zh/about.html` — About Us（团队介绍）
+
+### 4.8 404 页面配置
+
+**404.html 内容规范：**
+- 友好错误信息："Page Not Found"
+- 导航链接：返回首页、Blog、Docs
+- 语言自动检测：根据 URL 路径判断语言版本
+- 设计风格：与主页面一致的深色主题
 
 ---
 
