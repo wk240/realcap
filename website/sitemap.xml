@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Root page (redirects based on Accept-Language) -->
+  <url>
+    <loc>https://realcap.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://realcap.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://realcap.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realcap.app/"/>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- English version -->
+  <url>
+    <loc>https://realcap.app/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://realcap.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://realcap.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realcap.app/"/>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Chinese version -->
+  <url>
+    <loc>https://realcap.app/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://realcap.app/en/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://realcap.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://realcap.app/"/>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
