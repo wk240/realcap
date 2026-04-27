@@ -39,13 +39,12 @@ RealCap uses a **trusted technical process** to guarantee image authenticity—n
 **Why it matters:**
 Unlike AI detection algorithms (which can be fooled), RealCap's authenticity guarantee comes from the entire capture-to-verification process being under RealCap's control. The image never passes through third parties, ensuring chain of custody from capture to verification.
 
-### 3. Cloud Verification & Blockchain Proof
+### 3. Cloud Verification
 
 Every RealCap screenshot generates a **verification link** that allows anyone to verify its authenticity:
 
 - **Cloud storage** - Screenshots are uploaded with cryptographic hash
 - **Verification page** - Public URL shows capture metadata and authenticity status
-- **Blockchain timestamping** (optional) - Immutable proof of capture time
 - **Shareable proof** - Send verification link to third parties for independent verification
 
 **Verification includes:**
@@ -53,7 +52,6 @@ Every RealCap screenshot generates a **verification link** that allows anyone to
 - Source application information
 - Hash verification (confirms image unchanged)
 - Process verification status
-- Blockchain proof (if enabled)
 
 ### 4. Multi-Platform Support
 
@@ -115,7 +113,6 @@ Capture → Process Detection → Hash Generation → Cloud Upload → Verificat
 | Direct Cloud Flow | Image goes capture→cloud with no intermediaries | Ensures chain of custody |
 | Cloud Storage | Secure upload to verification server | Permanent proof preservation |
 | Verification Link | Shareable URL for authenticity check | Third-party can verify independently |
-| Blockchain Timestamping | Immutable capture time proof | Legal-grade evidence |
 | Multi-Platform | Windows, macOS, browser extension | Works across devices |
 
 ---
@@ -179,7 +176,7 @@ RealCap offers a **free tier** for basic verification:
 | Plan | Features | Price |
 |------|----------|-------|
 | Free | Basic capture, 10 verifications/month | $0 |
-| Pro | Unlimited verification, blockchain proof | Coming Soon |
+| Pro | Unlimited verification, priority support | Coming Soon |
 | Enterprise | Team features, API access, custom branding | Coming Soon |
 
 ---
@@ -192,7 +189,6 @@ RealCap offers a **free tier** for basic verification:
 | Desktop Client Beta | Q2 2026 | Windows/macOS trusted capture |
 | Browser Extension | Q2 2026 | Web page capture verification |
 | Cloud Verification | Q3 2026 | Full verification platform |
-| Blockchain Integration | Q4 2026 | Immutable timestamping |
 | Mobile Apps | 2027 | iOS/Android support |
 
 ---
@@ -211,7 +207,6 @@ RealCap offers a **free tier** for basic verification:
 - Verifiable capture
 - Screenshot evidence
 - Anti-AI screenshot
-- Screenshot blockchain
 - Cryptographic screenshot
 - Authentic screenshot
 - Screenshot fraud prevention
