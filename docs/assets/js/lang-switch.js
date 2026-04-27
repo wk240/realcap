@@ -55,18 +55,21 @@
 
     // Convert current path to target language
     if (targetLang === 'zh') {
+      // Switching to Chinese
       if (currentPath === '/' || currentPath === '/en' || currentPath.startsWith('/en/')) {
         newPath = currentPath.replace(/^\/en$/, '/zh/').replace(/^\/en/, '/zh').replace(/^\/$/, '/zh/');
       } else {
         newPath = '/zh/';
       }
     } else {
+      // Switching to English - use root path instead of /en/
       if (currentPath.startsWith('/zh/')) {
-        newPath = currentPath.replace(/^\/zh/, '/en');
+        newPath = currentPath.replace(/^\/zh/, '');
+        if (newPath === '') newPath = '/';
       } else if (currentPath === '/zh') {
-        newPath = '/en/';
+        newPath = '/';
       } else {
-        newPath = currentPath || '/en/';
+        newPath = '/';
       }
     }
 
@@ -75,15 +78,14 @@
 
   /**
    * Redirect to stored preference on first visit
-   * Only runs if user has no explicit language in URL and has stored preference
+   * Root path (/) is now English by default, only redirect if preference is Chinese
    */
   function applyStoredPreference() {
-    const currentLang = getCurrentLang();
     const storedLang = getStoredLang();
 
-    // Only redirect from root to stored preference
-    if (window.location.pathname === '/' && storedLang) {
-      window.location.href = '/' + storedLang + '/';
+    // Only redirect from root to Chinese if user prefers Chinese
+    if (window.location.pathname === '/' && storedLang === 'zh') {
+      window.location.href = '/zh/';
     }
   }
 
