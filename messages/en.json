@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "title": "RealCap - Trusted Screenshot Tool | Prevent AI Forgery",
+    "description": "RealCap is a trusted screenshot tool that prevents AI forgery. Verify screenshot authenticity, capture secure proof, and protect against fake screenshots."
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "blog": "Blog",
+    "docs": "Docs",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "RealCap - Trusted Screenshot Tool",
+    "subtitle": "Prevent AI Forgery · Verifiable Capture · Secure Proof",
+    "cta": "Download Now"
+  },
+  "footer": {
+    "copyright": "© 2026 RealCap. All rights reserved.",
+    "license": "Content licensed under CC-BY-NC 3.0. See LICENSE for details.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "about": "About Us",
+    "faq": "FAQ"
+  }
+}
