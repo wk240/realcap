@@ -10,6 +10,11 @@ interface FAQPageProps {
   params: Promise<{ locale: Locale }>;
 }
 
+export async function generateStaticParams() {
+  const locales: Locale[] = ['en', 'zh'];
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function FAQPage({ params }: FAQPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
