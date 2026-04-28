@@ -51,5 +51,11 @@
         "description": "可信截图可安全分享用于任何用途"
       }
     }
+  },
+  "targetIndustries": {
+    "title": "服务行业",
+    "subtitle": "RealCap为信任敏感行业提供专业截图验证服务",
+    "customSolution": "需要为您的行业定制解决方案？",
+    "contactLink": "联系我们"
   }
 }

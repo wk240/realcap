@@ -51,5 +51,11 @@
         "description": "Verified screenshot can be shared with confidence for any purpose"
       }
     }
+  },
+  "targetIndustries": {
+    "title": "Industries We Serve",
+    "subtitle": "RealCap provides specialized screenshot verification for trust-sensitive industries",
+    "customSolution": "Looking for a custom solution for your industry?",
+    "contactLink": "Contact Us"
   }
 }
