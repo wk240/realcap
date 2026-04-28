@@ -23,5 +23,10 @@
     "terms": "Terms of Use",
     "about": "About Us",
     "faq": "FAQ"
+  },
+  "trustProblem": {
+    "title": "The Growing Threat of Fake Screenshots",
+    "subtitle": "AI-generated fake screenshots are causing billions in losses across industries. Traditional verification methods fail against sophisticated forgery techniques.",
+    "learnMore": "Learn More"
   }
 }
