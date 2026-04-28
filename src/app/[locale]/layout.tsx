@@ -1,7 +1,10 @@
 import { locales, type Locale } from '@/i18n.config';
 import { notFound } from 'next/navigation';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 import '../globals.css';
 
 const geistSans = Geist({
@@ -18,6 +21,46 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://realcap.app';
+
+  return {
+    title: {
+      default: t('title'),
+      template: `%s | RealCap`,
+    },
+    description: t('description'),
+    alternates: {
+      canonical: `${siteUrl}/${locale === 'en' ? '' : locale}`,
+      languages: {
+        'en': `${siteUrl}`,
+        'zh': `${siteUrl}/zh`,
+      },
+    },
+    openGraph: {
+      title: t('title'),
+      description: t('description'),
+      url: `${siteUrl}/${locale === 'en' ? '' : locale}`,
+      siteName: 'RealCap',
+      locale: locale === 'zh' ? 'zh_CN' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+      site: '@wen_nkang',
+    },
+  };
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -32,17 +75,20 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: 'metadata' });
+  const messages = await getMessages();
 
   return (
     <html
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <meta name="description" content={t('description')} />
-      </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <NextIntlClientProvider messages={messages}>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
+      </body>
     </html>
   );
 }
