@@ -97,5 +97,9 @@
       "accuracy": "检测准确率",
       "fraudPrevented": "防止欺诈金额"
     }
+  },
+  "faqPreview": {
+    "title": "常见问题",
+    "viewAll": "查看所有问题"
   }
 }

@@ -7,7 +7,9 @@ import { CoreFeaturesSection } from '@/components/home/CoreFeaturesSection';
 import { TargetIndustriesSection } from '@/components/home/TargetIndustriesSection';
 import { UseCasesSection } from '@/components/home/UseCasesSection';
 import { DataCaseSection } from '@/components/home/DataCaseSection';
+import { FAQPreviewSection } from '@/components/home/FAQPreviewSection';
 import { getHomeContent } from '@/lib/content/home';
+import { getFAQContent } from '@/lib/content/faq';
 
 export default async function HomePage({
   params,
@@ -18,6 +20,7 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   const homeContent = getHomeContent(locale);
+  const faqContent = getFAQContent(locale);
 
   return (
     <>
@@ -28,6 +31,7 @@ export default async function HomePage({
       <TargetIndustriesSection />
       <UseCasesSection useCases={homeContent.frontmatter.useCases} />
       <DataCaseSection />
+      <FAQPreviewSection questions={faqContent.frontmatter.questions} />
     </>
   );
 }

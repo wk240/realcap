@@ -76,3 +76,9 @@ export interface DocPage {
   content: string;
   locale: string;
 }
+
+export interface FAQQuestion {
+  question: string;
+  answer: string;
+  slug: string;
+}

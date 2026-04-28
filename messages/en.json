@@ -97,5 +97,9 @@
       "accuracy": "Detection Accuracy",
       "fraudPrevented": "Fraud Prevented"
     }
+  },
+  "faqPreview": {
+    "title": "Common Questions",
+    "viewAll": "View All FAQs"
   }
 }
