@@ -1,7 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
-Sitemap: https://realcap.app/sitemap.xml
+# Host
+Host: https://realcap.app
 
-# Optional: limit crawl rate
-Crawl-delay: 1
+# Sitemaps
+Sitemap: https://realcap.app/sitemap.xml

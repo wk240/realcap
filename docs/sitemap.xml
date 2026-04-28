@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- English version (root) -->
-  <url>
-    <loc>https://realcap.app/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://realcap.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://realcap.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://realcap.app/"/>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Chinese version -->
-  <url>
-    <loc>https://realcap.app/zh/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://realcap.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://realcap.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://realcap.app/"/>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://realcap.app/</loc><lastmod>2026-04-28T12:43:39.927Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://realcap.app/en/</loc><lastmod>2026-04-28T12:43:39.928Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://realcap.app/zh/</loc><lastmod>2026-04-28T12:43:39.928Z</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
