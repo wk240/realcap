@@ -47,7 +47,7 @@ export function HowItWorksSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {steps.map((step) => (
-            <div key={step.number} className="text-center">
+            <article key={step.number} className="text-center">
               <div className="text-4xl font-bold text-blue-600 mb-4">
                 {step.number}
               </div>
@@ -57,7 +57,7 @@ export function HowItWorksSection() {
               <p className="text-gray-600">
                 {step.description}
               </p>
-            </div>
+            </article>
           ))}
         </div>
 
