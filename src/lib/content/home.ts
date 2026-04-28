@@ -3,6 +3,13 @@ import path from 'path';
 import matter from 'gray-matter';
 import { type Industry } from '@/types/content';
 
+interface UseCase {
+  title: string;
+  description: string;
+  articleSlug: string;
+  category: string;
+}
+
 interface HomeContent {
   frontmatter: {
     title: string;
@@ -13,6 +20,7 @@ interface HomeContent {
       description: string;
       stats: string;
     }>;
+    useCases: UseCase[];
   };
 }
 
@@ -25,6 +33,7 @@ export function getHomeContent(locale: string): HomeContent {
         title: 'RealCap',
         description: 'Trusted screenshot tool',
         problems: [],
+        useCases: [],
       },
     };
   }

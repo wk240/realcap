@@ -80,5 +80,11 @@
         "description": "支持Windows、macOS、浏览器扩展和移动应用"
       }
     }
+  },
+  "useCases": {
+    "title": "真实应用场景",
+    "subtitle": "了解组织如何使用RealCap防止欺诈",
+    "readCase": "阅读案例",
+    "viewAll": "查看所有案例"
   }
 }

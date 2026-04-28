@@ -80,5 +80,11 @@
         "description": "Available on Windows, macOS, browser extension, and mobile apps"
       }
     }
+  },
+  "useCases": {
+    "title": "Real-World Use Cases",
+    "subtitle": "Learn how organizations use RealCap to prevent fraud",
+    "readCase": "Read Case Study",
+    "viewAll": "View All Cases"
   }
 }

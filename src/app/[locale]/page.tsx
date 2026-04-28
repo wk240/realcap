@@ -5,6 +5,7 @@ import { TrustProblemSection } from '@/components/home/TrustProblemSection';
 import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { CoreFeaturesSection } from '@/components/home/CoreFeaturesSection';
 import { TargetIndustriesSection } from '@/components/home/TargetIndustriesSection';
+import { UseCasesSection } from '@/components/home/UseCasesSection';
 import { getHomeContent } from '@/lib/content/home';
 
 export default async function HomePage({
@@ -24,6 +25,7 @@ export default async function HomePage({
       <HowItWorksSection />
       <CoreFeaturesSection />
       <TargetIndustriesSection />
+      <UseCasesSection useCases={homeContent.frontmatter.useCases} />
     </>
   );
 }
