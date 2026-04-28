@@ -1,18 +1,29 @@
 ---
 title: "常见问题"
-description: "关于RealCap截图验证的常见问题"
-questions:
-  - question: "什么是截图验证？"
-    answer: "截图验证确认截图是真实拍摄的，未被篡改或由AI生成。"
-    slug: "what-is-screenshot-verification"
-  - question: "RealCap如何防止AI伪造？"
-    answer: "RealCap在截图瞬间捕获元数据，创建不可篡改的记录，证明真实性并检测AI生成的虚假截图。"
-    slug: "how-realcap-prevents-ai-forgery"
-  - question: "RealCap可以验证现有截图吗？"
-    answer: "RealCap验证通过我们应用或API拍摄的截图。其他方式拍摄的截图无法事后验证。"
-    slug: "can-realcap-verify-existing-screenshots"
+description: "RealCap截图验证完整指南"
+topics:
+  - slug: "screenshot-verification-basics"
+    name: "截图验证基础"
+    questions:
+      - question: "什么是截图验证？"
+        answer: "截图验证确认截图是真实拍摄的，未被篡改或由AI生成。RealCap在截图瞬间创建不可篡改的真实性记录。"
+      - question: "RealCap如何检测AI生成的虚假截图？"
+        answer: "RealCap在截图瞬间捕获元数据，包括设备信息、时间戳和截图上下文。这些元数据经过加密，无法事后添加到AI生成的图像中。"
+      - question: "RealCap可以验证安装前拍摄的截图吗？"
+        answer: "不可以。RealCap只能验证通过我们的应用、浏览器扩展或API拍摄的截图。安装RealCap前拍摄的截图无法事后验证。"
+      - question: "RealCap可以验证哪些类型的截图？"
+        answer: "RealCap可以验证通过我们的截图系统拍摄的任何截图，包括银行余额截图、收入证明截图、身份证件和通信记录。"
+  - slug: "integration-questions"
+    name: "集成问题"
+    questions:
+      - question: "如何集成RealCap API？"
+        answer: "RealCap提供可集成到任何应用的RESTful API。请参阅我们的API文档了解端点详情、请求格式和代码示例。"
+      - question: "RealCap支持哪些平台？"
+        answer: "RealCap提供桌面应用（Windows、macOS）、浏览器扩展（Chrome、Firefox）和移动应用（iOS、Android）。我们还提供直接集成的SDK。"
+      - question: "有Webhook回调选项吗？"
+        answer: "是的。RealCap支持验证完成的Webhook回调。在控制面板设置中配置您的回调URL。"
 ---
 
 # 常见问题
 
-查找关于RealCap截图验证的常见问题答案。
+查找关于RealCap截图验证的所有问题答案。
