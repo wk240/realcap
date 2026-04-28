@@ -4,13 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Container } from '@/components/ui/Container';
 import { Link } from '@/components/ui/Link';
 import { type Locale } from '@/i18n.config';
-
-interface UseCase {
-  title: string;
-  description: string;
-  articleSlug: string;
-  category: string;
-}
+import { type UseCase } from '@/types/content';
 
 interface UseCasesSectionProps {
   useCases: UseCase[];

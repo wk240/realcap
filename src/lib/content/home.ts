@@ -1,14 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { type Industry } from '@/types/content';
-
-interface UseCase {
-  title: string;
-  description: string;
-  articleSlug: string;
-  category: string;
-}
+import { type Industry, type UseCase } from '@/types/content';
 
 interface HomeContent {
   frontmatter: {

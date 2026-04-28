@@ -48,6 +48,13 @@ export type BlogCategory = 'fraud-detection' | 'cases' | 'tutorials' | 'reports'
 export type Industry = 'lending' | 'mcn' | 'matchmaking' | 'gaming' | 'rental';
 export type DocSection = 'getting-started' | 'api' | 'integration';
 
+export interface UseCase {
+  title: string;
+  description: string;
+  articleSlug: string;
+  category: BlogCategory;
+}
+
 export interface Article {
   slug: string;
   frontmatter: BlogFrontmatter;
