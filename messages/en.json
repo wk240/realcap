@@ -57,5 +57,28 @@
     "subtitle": "RealCap provides specialized screenshot verification for trust-sensitive industries",
     "customSolution": "Looking for a custom solution for your industry?",
     "contactLink": "Contact Us"
+  },
+  "coreFeatures": {
+    "title": "Core Features",
+    "subtitle": "RealCap provides enterprise-grade screenshot verification capabilities",
+    "learnMore": "Learn More",
+    "features": {
+      "trustedCapture": {
+        "title": "Trusted Capture",
+        "description": "Screenshot metadata is captured at the moment of capture, creating an immutable authenticity record"
+      },
+      "aiDetection": {
+        "title": "AI Detection",
+        "description": "Advanced algorithms detect AI-generated fake screenshots with 99.9% accuracy"
+      },
+      "verificationApi": {
+        "title": "Verification API",
+        "description": "RESTful API for instant verification, batch processing, and webhook callbacks"
+      },
+      "crossPlatform": {
+        "title": "Cross-Platform",
+        "description": "Available on Windows, macOS, browser extension, and mobile apps"
+      }
+    }
   }
 }

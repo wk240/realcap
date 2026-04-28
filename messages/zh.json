@@ -57,5 +57,28 @@
     "subtitle": "RealCap为信任敏感行业提供专业截图验证服务",
     "customSolution": "需要为您的行业定制解决方案？",
     "contactLink": "联系我们"
+  },
+  "coreFeatures": {
+    "title": "核心功能",
+    "subtitle": "RealCap提供企业级截图验证能力",
+    "learnMore": "了解更多",
+    "features": {
+      "trustedCapture": {
+        "title": "可信截图",
+        "description": "截图元数据在截图瞬间捕获，创建不可篡改的真实性记录"
+      },
+      "aiDetection": {
+        "title": "AI检测",
+        "description": "先进算法以99.9%准确率检测AI生成的虚假截图"
+      },
+      "verificationApi": {
+        "title": "验证API",
+        "description": "RESTful API支持即时验证、批量处理和回调通知"
+      },
+      "crossPlatform": {
+        "title": "跨平台",
+        "description": "支持Windows、macOS、浏览器扩展和移动应用"
+      }
+    }
   }
 }
