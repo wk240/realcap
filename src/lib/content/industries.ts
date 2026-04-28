@@ -1,6 +1,6 @@
 import { type Industry } from '@/types/content';
 
-interface IndustryInfo {
+export interface IndustryInfo {
   slug: Industry;
   nameEn: string;
   nameZh: string;
@@ -52,11 +52,11 @@ export const industries: IndustryInfo[] = [
   },
 ];
 
-export function getIndustryInfo(slug: Industry, locale: string): IndustryInfo | undefined {
+export function getIndustryInfo(slug: Industry): IndustryInfo | undefined {
   return industries.find((i) => i.slug === slug);
 }
 
 export function getIndustryName(slug: Industry, locale: string): string {
-  const info = getIndustryInfo(slug, locale);
+  const info = getIndustryInfo(slug);
   return locale === 'en' ? info?.nameEn ?? '' : info?.nameZh ?? '';
 }
