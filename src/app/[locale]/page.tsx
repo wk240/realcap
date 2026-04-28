@@ -1,6 +1,8 @@
 import { setRequestLocale } from 'next-intl/server';
 import { type Locale } from '@/i18n.config';
 import { HeroSection } from '@/components/home/HeroSection';
+import { TrustProblemSection } from '@/components/home/TrustProblemSection';
+import { getHomeContent } from '@/lib/content/home';
 
 export default async function HomePage({
   params,
@@ -10,10 +12,12 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const homeContent = getHomeContent(locale);
+
   return (
     <>
       <HeroSection />
-      {/* Additional sections will be added */}
+      <TrustProblemSection problems={homeContent.frontmatter.problems} />
     </>
   );
 }
