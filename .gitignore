@@ -52,5 +52,5 @@ next-env.d.ts
 # log files
 *.log
 
-docs/RealCap.app 项目落地执行计划文档.md
 .worktrees/
+.claude/worktrees/
