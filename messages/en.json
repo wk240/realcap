@@ -14,11 +14,7 @@
     "title": "RealCap - Trusted Screenshot Tool",
     "subtitle": "Prevent AI Forgery · Verifiable Capture · Secure Proof",
     "cta": "Download Now",
-    "stats": {
-      "users": "10,000+",
-      "verifications": "1M+",
-      "accuracy": "99.9%"
-    }
+    "secondaryCta": "Learn More"
   },
   "footer": {
     "copyright": "© 2026 RealCap. All rights reserved.",

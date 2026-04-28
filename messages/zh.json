@@ -14,11 +14,7 @@
     "title": "RealCap - 可信截图工具",
     "subtitle": "防止AI伪造 · 可验证截图 · 安全取证",
     "cta": "立即下载",
-    "stats": {
-      "users": "10,000+",
-      "verifications": "1M+",
-      "accuracy": "99.9%"
-    }
+    "secondaryCta": "了解更多"
   },
   "footer": {
     "copyright": "© 2026 RealCap. 保留所有权利。",
