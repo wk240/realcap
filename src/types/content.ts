@@ -41,7 +41,7 @@ export interface DocFrontmatter {
   order: number;
   prevPage?: string;
   nextPage?: string;
-  codeExamples?: string[];
+  codeExamples?: { language: string }[];
 }
 
 export type BlogCategory = 'fraud-detection' | 'cases' | 'tutorials' | 'reports';

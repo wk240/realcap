@@ -1,6 +1,6 @@
-import type { locales } from '@/i18n.config';
+import type { Locale } from '@/i18n.config';
 
-export type Locale = (typeof locales)[number];
+export { Locale };
 
 export interface LocaleConfig {
   code: Locale;
