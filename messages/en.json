@@ -28,5 +28,28 @@
     "title": "The Growing Threat of Fake Screenshots",
     "subtitle": "AI-generated fake screenshots are causing billions in losses across industries. Traditional verification methods fail against sophisticated forgery techniques.",
     "learnMore": "Learn More"
+  },
+  "howItWorks": {
+    "title": "How RealCap Works",
+    "subtitle": "Simple 4-step process ensures screenshot authenticity",
+    "docsLink": "Read Documentation",
+    "steps": {
+      "capture": {
+        "title": "Capture",
+        "description": "User initiates screenshot through RealCap app or browser extension"
+      },
+      "process": {
+        "title": "Process",
+        "description": "Screenshot metadata is captured and encrypted at the moment of capture"
+      },
+      "verify": {
+        "title": "Verify",
+        "description": "Verification API confirms authenticity and provides tamper-proof proof"
+      },
+      "share": {
+        "title": "Share",
+        "description": "Verified screenshot can be shared with confidence for any purpose"
+      }
+    }
   }
 }

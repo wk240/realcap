@@ -2,6 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { type Locale } from '@/i18n.config';
 import { HeroSection } from '@/components/home/HeroSection';
 import { TrustProblemSection } from '@/components/home/TrustProblemSection';
+import { HowItWorksSection } from '@/components/home/HowItWorksSection';
 import { getHomeContent } from '@/lib/content/home';
 
 export default async function HomePage({
@@ -18,6 +19,7 @@ export default async function HomePage({
     <>
       <HeroSection />
       <TrustProblemSection problems={homeContent.frontmatter.problems} />
+      <HowItWorksSection />
     </>
   );
 }

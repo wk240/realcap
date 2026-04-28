@@ -28,5 +28,28 @@
     "title": "虚假截图日益严重的威胁",
     "subtitle": "AI生成的虚假截图正在给各行各业造成数十亿美元的损失。传统验证方法无法应对复杂的伪造技术。",
     "learnMore": "了解更多"
+  },
+  "howItWorks": {
+    "title": "RealCap工作原理",
+    "subtitle": "简单4步确保截图真实性",
+    "docsLink": "阅读文档",
+    "steps": {
+      "capture": {
+        "title": "截图",
+        "description": "用户通过RealCap应用或浏览器扩展发起截图"
+      },
+      "process": {
+        "title": "处理",
+        "description": "截图元数据在截图瞬间被捕获并加密"
+      },
+      "verify": {
+        "title": "验证",
+        "description": "验证API确认真实性并提供防篡改证明"
+      },
+      "share": {
+        "title": "分享",
+        "description": "可信截图可安全分享用于任何用途"
+      }
+    }
   }
 }
