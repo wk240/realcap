@@ -129,6 +129,7 @@ export default async function CompareTopicPage({ params }: CompareTopicPageProps
       <CompareTable
         rows={topicData.rows}
         alternativeName={topicData.alternativeName}
+        featureLabel={locale === 'en' ? 'Feature' : '功能'}
       />
 
       <div className="mt-8 flex gap-4">

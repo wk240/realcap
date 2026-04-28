@@ -9,17 +9,18 @@ interface CompareRow {
 interface CompareTableProps {
   rows: CompareRow[];
   alternativeName: string;
+  featureLabel?: string;
   className?: string;
 }
 
-export function CompareTable({ rows, alternativeName, className }: CompareTableProps) {
+export function CompareTable({ rows, alternativeName, featureLabel = 'Feature', className }: CompareTableProps) {
   return (
     <div className={cn('overflow-x-auto', className)}>
       <table className="w-full border-collapse">
         <thead>
           <tr className="bg-gray-100">
             <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-b border-gray-200">
-              Feature
+              {featureLabel}
             </th>
             <th className="px-4 py-3 text-center text-sm font-semibold text-gray-900 border-b border-gray-200 bg-green-50">
               RealCap
