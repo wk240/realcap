@@ -86,5 +86,16 @@
     "subtitle": "了解组织如何使用RealCap防止欺诈",
     "readCase": "阅读案例",
     "viewAll": "查看所有案例"
+  },
+  "dataCase": {
+    "title": "真实影响，真实结果",
+    "subtitle": "RealCap受到全球组织信赖，防止截图欺诈",
+    "readSuccessStories": "阅读成功案例",
+    "stats": {
+      "users": "活跃用户",
+      "verifications": "验证次数",
+      "accuracy": "检测准确率",
+      "fraudPrevented": "防止欺诈金额"
+    }
   }
 }

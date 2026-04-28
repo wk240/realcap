@@ -86,5 +86,16 @@
     "subtitle": "Learn how organizations use RealCap to prevent fraud",
     "readCase": "Read Case Study",
     "viewAll": "View All Cases"
+  },
+  "dataCase": {
+    "title": "Real Impact, Real Results",
+    "subtitle": "RealCap is trusted by organizations worldwide to prevent screenshot fraud",
+    "readSuccessStories": "Read Success Stories",
+    "stats": {
+      "users": "Active Users",
+      "verifications": "Verifications",
+      "accuracy": "Detection Accuracy",
+      "fraudPrevented": "Fraud Prevented"
+    }
   }
 }
