@@ -8,6 +8,7 @@ import { TargetIndustriesSection } from '@/components/home/TargetIndustriesSecti
 import { UseCasesSection } from '@/components/home/UseCasesSection';
 import { DataCaseSection } from '@/components/home/DataCaseSection';
 import { FAQPreviewSection } from '@/components/home/FAQPreviewSection';
+import { BottomCTASection } from '@/components/home/BottomCTASection';
 import { getHomeContent } from '@/lib/content/home';
 import { getFAQContent } from '@/lib/content/faq';
 
@@ -32,6 +33,7 @@ export default async function HomePage({
       <UseCasesSection useCases={homeContent.frontmatter.useCases} />
       <DataCaseSection />
       <FAQPreviewSection questions={faqContent.frontmatter.questions} />
+      <BottomCTASection />
     </>
   );
 }

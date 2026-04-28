@@ -101,5 +101,11 @@
   "faqPreview": {
     "title": "Common Questions",
     "viewAll": "View All FAQs"
+  },
+  "bottomCTA": {
+    "title": "Start Preventing Screenshot Fraud Today",
+    "subtitle": "Join thousands of organizations using RealCap to verify screenshots and prevent AI forgery",
+    "downloadFree": "Download Free",
+    "viewPricing": "View Pricing"
   }
 }

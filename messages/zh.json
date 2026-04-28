@@ -101,5 +101,11 @@
   "faqPreview": {
     "title": "常见问题",
     "viewAll": "查看所有问题"
+  },
+  "bottomCTA": {
+    "title": "今天开始防止截图欺诈",
+    "subtitle": "加入数千家使用RealCap验证截图、防止AI伪造的组织",
+    "downloadFree": "免费下载",
+    "viewPricing": "查看价格"
   }
 }
