@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "title": "RealCap - 可信截图工具 | 防止AI伪造",
+    "description": "RealCap是一款可信截图工具，可有效防止AI伪造。验证截图真实性，安全取证，防范虚假截图。"
+  },
+  "nav": {
+    "home": "首页",
+    "features": "功能",
+    "blog": "博客",
+    "docs": "文档",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "title": "RealCap - 可信截图工具",
+    "subtitle": "防止AI伪造 · 可验证截图 · 安全取证",
+    "cta": "立即下载"
+  },
+  "footer": {
+    "copyright": "© 2026 RealCap. 保留所有权利。",
+    "license": "内容采用CC-BY-NC 3.0许可。详见LICENSE文件。",
+    "privacy": "隐私政策",
+    "terms": "使用条款",
+    "about": "关于我们",
+    "faq": "常见问题"
+  }
+}

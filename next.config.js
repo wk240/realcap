@@ -1,5 +1,5 @@
 const withNextIntl = require('next-intl/plugin')(
-  './i18n.config.ts'
+  './src/i18n/request.ts'
 );
 const withMDX = require('@next/mdx')({
   options: {
