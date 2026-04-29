@@ -1,6 +1,8 @@
 1:"$Sreact.fragment"
-3:I[86718,["/_next/static/chunks/0_mjsupa5g0x~.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":["$L2",[["$","script","script-0",{"src":"/_next/static/chunks/00j7juqp7~p4x.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"MvLe4_FLMSAfiIiydAyeG"}
-5:null
-2:E{"digest":"NEXT_HTTP_ERROR_FALLBACK;404"}
+2:I[25664,["/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/0z53isy6z9hpp.js","/_next/static/chunks/0a51q.65l43cu.js","/_next/static/chunks/155hk5_4p83dv.js","/_next/static/chunks/0.d.qf0i9euve.js"],"Breadcrumb"]
+3:I[62546,["/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/0z53isy6z9hpp.js","/_next/static/chunks/0a51q.65l43cu.js","/_next/static/chunks/155hk5_4p83dv.js","/_next/static/chunks/0.d.qf0i9euve.js"],"SolutionHero"]
+4:I[60465,["/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/0z53isy6z9hpp.js","/_next/static/chunks/0a51q.65l43cu.js","/_next/static/chunks/155hk5_4p83dv.js","/_next/static/chunks/0.d.qf0i9euve.js"],"PainPointsSection"]
+5:I[97367,["/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Product\",\"name\":\"租房平台截图验证方案\",\"description\":\"RealCap帮助租房平台验证租客财务文件和身份证明\",\"brand\":{\"@type\":\"Brand\",\"name\":\"RealCap\"},\"category\":\"Screenshot Verification\",\"offers\":{\"@type\":\"Offer\",\"url\":\"https://realcap.app/zh/solutions/rental\",\"priceSpecification\":{\"@type\":\"PriceSpecification\",\"priceCurrency\":\"CNY\"}}}"}}],["$","div",null,{"className":"mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-12","children":["$","$L2",null,{"items":[{"label":"首页","href":"/zh/"},{"label":"解决方案","href":"/zh/solutions"},{"label":"租房平台截图验证方案","href":"/zh/solutions/rental"}]}]}],["$","$L3",null,{"industry":"rental","title":"租房平台截图验证方案","description":"RealCap帮助租房平台验证租客财务文件和身份证明"}],["$","$L4",null,{"painPoints":["租客伪造收入证明截图","身份文件被篡改","银行余额截图由AI生成"]}]],[["$","script","script-0",{"src":"/_next/static/chunks/0.d.qf0i9euve.js","async":true}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"XILHfnQqTqSWH7KNHImYB"}
+7:null
