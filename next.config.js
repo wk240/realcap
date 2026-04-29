@@ -12,6 +12,7 @@ const withMDX = require('@next/mdx')({
 const nextConfig = {
   output: 'export',
   distDir: 'docs',
+  basePath: '/realcap',
   images: {
     unoptimized: true,
   },
