@@ -53,4 +53,4 @@ next-env.d.ts
 *.log
 
 .worktrees/
-.claude/worktrees/
+.claude/worktrees/test-results/
