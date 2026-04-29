@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/Container';
 import { Link } from '@/components/ui/Link';
 import { type Locale } from '@/i18n.config';
 import { type Industry } from '@/types/content';
+import { getIndustryInfo } from '@/lib/content/industries';
 
 interface TrustProblemSectionProps {
   problems: Array<{
@@ -36,7 +37,9 @@ export function TrustProblemSection({ problems }: TrustProblemSectionProps) {
           {problems.map((problem) => (
             <article key={problem.industry} className="bg-gray-50 rounded-lg p-6">
               <div className="text-sm font-medium text-blue-600 mb-2">
-                {problem.industry.toUpperCase()}
+                {locale === 'en'
+                  ? getIndustryInfo(problem.industry)?.nameEn
+                  : getIndustryInfo(problem.industry)?.nameZh}
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {problem.title}
