@@ -1,18 +1,535 @@
 ---
 title: "RealCap文档"
-description: "RealCap截图验证完整使用指南"
+description: "RealCap截图验证完整使用指南，从入门到高级集成"
 sections:
   - slug: "getting-started"
     name: "快速开始"
     description: "快速设置和首次验证"
   - slug: "api"
     name: "API参考"
-    description: "完整API文档"
+    description: "完整API文档和示例"
   - slug: "integration"
     name: "集成指南"
-    description: "平台特定集成"
+    description: "平台特定集成教程"
+  - slug: "sdk"
+    name: "SDK使用"
+    description: "客户端SDK开发指南"
+  - slug: "best-practices"
+    name: "最佳实践"
+    description: "验证流程设计建议"
 ---
 
 # RealCap文档
 
-欢迎使用RealCap文档。学习如何将截图验证集成到您的流程中。
+欢迎使用RealCap截图验证文档。本指南将帮助您理解截图验证技术原理，完成系统集成，并设计有效的验证流程。
+
+## 文档导航
+
+### 快速开始
+
+适合初次接触RealCap的用户，快速完成首次验证体验。
+
+**内容概览：**
+
+- RealCap产品介绍
+- 注册和获取API密钥
+- 第一次验证尝试
+- 验证结果解读
+
+[阅读快速开始指南](#getting-started)
+
+### API参考
+
+适合开发人员集成的完整API文档。
+
+**内容概览：**
+
+- API认证和授权
+- 验证请求格式
+- 验证响应结构
+- 错误处理指南
+- 批量验证API
+- Webhook回调配置
+
+[阅读API参考](#api)
+
+### 集成指南
+
+适合特定平台和行业的集成教程。
+
+**内容概览：**
+
+- 网贷平台集成指南
+- MCN机构集成指南
+- 婚恋平台集成指南
+- 租房平台集成指南
+- 游戏平台集成指南
+
+[阅读集成指南](#integration)
+
+### SDK使用
+
+适合客户端开发人员的SDK开发指南。
+
+**内容概览：**
+
+- Web SDK使用
+- iOS SDK开发
+- Android SDK开发
+- 可信截图捕获
+- 用户界面设计
+
+[阅读SDK使用](#sdk)
+
+### 最佳实践
+
+适合设计验证流程的产品和运营人员。
+
+**内容概览：**
+
+- 验证流程设计
+- 验证结果处理策略
+- 风控体系集成
+- 用户体验优化
+- 效果监控分析
+
+[阅读最佳实践](#best-practices)
+
+---
+
+## 快速开始 {#getting-started}
+
+### RealCap是什么？
+
+RealCap是一款专业的截图验证工具，采用"源头可信+多维验证"的技术架构，帮助平台验证用户上传截图的真实性。
+
+**核心能力：**
+
+| 能力 | 说明 |
+|------|------|
+| AI伪造检测 | 检测AI生成的虚假截图 |
+| 编辑篡改检测 | 检测Photoshop等工具修改 |
+| 来源可信验证 | 验证截图是否通过可信渠道捕获 |
+| 数据逻辑分析 | 分析截图数据的合理性 |
+
+**适用场景：**
+
+- 网贷平台：验证借款人财务截图
+- MCN机构：验证网红收入声明
+- 婚恋平台：验证用户身份和财务声明
+- 租房平台：验证租客收入证明
+- 游戏平台：验证虚拟资产所有权
+
+### 注册和获取API密钥
+
+**Step 1：注册账户**
+
+访问 [RealCap控制台](https://console.realcap.app)，注册开发者账户。
+
+**Step 2：创建项目**
+
+在控制台创建新项目，填写项目信息：
+
+- 项目名称
+- 项目类型（网贷/MCN/婚恋/租房/游戏）
+- 预估验证量
+
+**Step 3：获取API密钥**
+
+项目创建后，获取API密钥：
+
+- API Key：用于认证请求
+- Secret Key：用于签名验证（可选）
+
+**Step 4：配置验证参数**
+
+根据项目需求配置验证参数：
+
+- 验证类型：选择需要验证的截图类型
+- 验证强度：选择检测精度级别
+- 回调配置：设置Webhook回调地址
+
+### 第一次验证尝试
+
+使用API进行第一次验证：
+
+```bash
+curl -X POST https://api.realcap.app/v1/verify \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "verificationType": "bank_balance",
+    "screenshot": "base64_encoded_image",
+    "metadata": {
+      "declaredAmount": 100000,
+      "declaredBank": "工商银行"
+    }
+  }'
+```
+
+### 验证结果解读
+
+验证响应示例：
+
+```json
+{
+  "verificationId": "verify_abc123",
+  "status": "verified",
+  "fraudProbability": 0.02,
+  "confidence": 0.99,
+  "issues": [],
+  "details": {
+    "sourceVerified": true,
+    "aiGenerated": false,
+    "edited": false,
+    "dataConsistent": true
+  },
+  "recommendation": "approve",
+  "processingTime": 480
+}
+```
+
+**结果字段说明：**
+
+| 字段 | 说明 |
+|------|------|
+| status | 验证状态：verified/failed/review |
+| fraudProbability | 欺诈概率：0-1之间 |
+| confidence | 置信度：0-1之间 |
+| issues | 发现的问题列表 |
+| recommendation | 建议操作：approve/reject/review |
+
+---
+
+## API参考 {#api}
+
+### API认证
+
+所有API请求需要携带认证信息：
+
+```javascript
+// Header认证
+Authorization: Bearer YOUR_API_KEY
+
+// 或使用签名认证（更高安全性）
+Authorization: Bearer YOUR_API_KEY
+X-Signature: sha256_signature
+X-Timestamp: request_timestamp
+```
+
+### 验证请求
+
+**请求端点：**
+
+```
+POST https://api.realcap.app/v1/verify
+```
+
+**请求参数：**
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| verificationType | string | 是 | 验证类型 |
+| screenshot | string | 是 | 截图数据（base64或URL） |
+| metadata | object | 否 | 元数据信息 |
+| callbackUrl | string | 否 | Webhook回调地址 |
+
+**验证类型列表：**
+
+| 类型 | 说明 |
+|------|------|
+| bank_balance | 银行余额截图 |
+| income_proof | 收入证明截图 |
+| identity_document | 身份证件截图 |
+| gaming_asset | 游戏资产截图 |
+| social_media_income | 社交媒体收入截图 |
+
+### 验证响应
+
+**响应结构：**
+
+```json
+{
+  "verificationId": "string",
+  "status": "verified | failed | review",
+  "fraudProbability": "number",
+  "confidence": "number",
+  "issues": [
+    {
+      "type": "string",
+      "severity": "high | medium | low",
+      "description": "string"
+    }
+  ],
+  "details": {
+    "sourceVerified": "boolean",
+    "aiGenerated": "boolean",
+    "edited": "boolean",
+    "dataConsistent": "boolean",
+    "metadataMatch": "boolean"
+  },
+  "recommendation": "approve | reject | review",
+  "processingTime": "number (ms)"
+}
+```
+
+### 批量验证API
+
+适用于大量截图验证场景：
+
+```javascript
+// 批量验证请求
+POST https://api.realcap.app/v1/verify/batch
+
+{
+  "verifications": [
+    { "verificationType": "bank_balance", "screenshot": "..." },
+    { "verificationType": "income_proof", "screenshot": "..." }
+  ],
+  "callbackUrl": "https://your-platform.com/webhook"
+}
+```
+
+### Webhook回调
+
+验证完成后，可通过Webhook接收结果：
+
+**回调请求格式：**
+
+```json
+{
+  "verificationId": "verify_abc123",
+  "status": "verified",
+  "fraudProbability": 0.02,
+  "timestamp": "2026-04-30T10:00:00Z",
+  "signature": "sha256_signature"
+}
+```
+
+---
+
+## 集成指南 {#integration}
+
+### 网贷平台集成
+
+**推荐集成流程：**
+
+1. 在贷款申请页面嵌入RealCap截图捕获
+2. 用户提交财务截图时自动验证
+3. 根据验证结果调整风控评分
+4. 验证结果存档用于后续审核
+
+**关键配置：**
+
+| 配置项 | 建议值 |
+|------|------|
+| 验证类型 | bank_balance, income_proof |
+| 验证强度 | high |
+| 回调启用 | 是 |
+| 复核阈值 | fraudProbability > 0.3 |
+
+[查看完整网贷集成指南](/zh/solutions/lending)
+
+### MCN机构集成
+
+**推荐集成流程：**
+
+1. 在达人签约流程嵌入验证
+2. 签约前要求可信收入截图
+3. 验证结果纳入签约决策
+4. 建立达人验证数据库
+
+**关键配置：**
+
+| 配置项 | 建议值 |
+|------|------|
+| 验证类型 | social_media_income, gaming_asset |
+| 验证强度 | high |
+| 身份验证 | 启用 |
+| 黑名单联动 | 启用 |
+
+[查看完整MCN集成指南](/zh/solutions/mcn)
+
+---
+
+## SDK使用 {#sdk}
+
+### Web SDK
+
+在浏览器中捕获可信截图：
+
+```html
+<script src="https://cdn.realcap.app/sdk/web/latest/realcap.min.js"></script>
+<script>
+  const realcap = new RealCap.WebSDK({
+    apiKey: 'YOUR_API_KEY',
+    container: '#realcap-container'
+  });
+
+  // 拍摄可信截图
+  realcap.capture().then(result => {
+    // result包含加密签名的截图
+    console.log(result.verificationId);
+    console.log(result.signedScreenshot);
+  });
+</script>
+```
+
+### iOS SDK
+
+在iOS应用中集成：
+
+```swift
+import RealCapSDK
+
+let realcap = RealCapSDK(apiKey: "YOUR_API_KEY")
+
+// 拍摄可信截图
+realcap.captureScreenshot { result in
+    switch result {
+    case .success(let capture):
+        print("Verification ID: \(capture.verificationId)")
+        // 上传带签名的截图
+    case .failure(let error):
+        print("Capture failed: \(error)")
+    }
+}
+```
+
+### Android SDK
+
+在Android应用中集成：
+
+```java
+import com.realcap.sdk.RealCapSDK;
+
+RealCapSDK realcap = new RealCapSDK("YOUR_API_KEY");
+
+// 拕摄可信截图
+realcap.captureScreenshot(new RealCapSDK.CaptureCallback() {
+    @Override
+    public void onSuccess(CaptureResult result) {
+        String verificationId = result.getVerificationId();
+        String signedScreenshot = result.getSignedScreenshot();
+        // 上传验证
+    }
+
+    @Override
+    public void onFailure(Exception error) {
+        // 处理错误
+    }
+});
+```
+
+---
+
+## 最佳实践 {#best-practices}
+
+### 验证流程设计
+
+**流程设计原则：**
+
+1. **验证前置**：在用户提交截图时就进行验证
+2. **渐进验证**：低风险场景简化验证，高风险场景全面验证
+3. **复核机制**：保留人工复核处理边界案例
+4. **结果联动**：验证结果与业务决策清晰关联
+
+**典型验证流程：**
+
+```
+用户上传截图 → 自动验证 → 验证结果 → 业务决策
+      ↓            ↓           ↓          ↓
+  可信截图捕获   三层检测    概率评分    通过/拒绝/复核
+                 来源验证    问题列表    风控调整
+                 内容验证    置信度      用户通知
+                 AI检测
+```
+
+### 验证结果处理
+
+**推荐处理策略：**
+
+| 验证结果 | fraudProbability | 处理策略 |
+|---------|------------------|---------|
+| verified | < 0.1 | 正常通过 |
+| review | 0.1 - 0.3 | 人工复核 |
+| failed | > 0.3 | 拒绝或大幅降权 |
+
+### 用户体验优化
+
+**优化建议：**
+
+1. **清晰说明**：告知用户验证目的和流程
+2. **简单操作**：提供友好的截图操作指引
+3. **快速反馈**：验证结果实时返回
+4. **隐私保护**：明确数据仅用于验证
+
+### 效果监控
+
+**关键监控指标：**
+
+| 指标 | 说明 | 监控频率 |
+|------|------|---------|
+| 验证准确率 | 验证结果与实际情况一致性 | 每周 |
+| 欺诈检出率 | 成功识别的欺诈比例 | 每周 |
+| 误判率 | 错误拒绝真实截图的比例 | 每周 |
+| 漏判率 | 错误通过虚假截图的比例 | 每周 |
+| 验证耗时 | 平均验证处理时间 | 每天 |
+
+---
+
+## 常见问题解答 {#faq}
+
+### Q: RealCap验证准确率如何？
+
+RealCap验证在各类截图上的准确率：
+
+- AI伪造检测：99.9%
+- 编辑篡改检测：99.5%
+- 来源可信验证：99.8%
+- 数据逻辑分析：95%
+
+### Q: 验证需要多长时间？
+
+单次验证通常在500毫秒内完成。批量验证根据数量可能需要1-5秒。
+
+### Q: 支持哪些截图类型？
+
+支持的截图类型包括：
+
+- 银行余额截图
+- 收入证明截图
+- 身份证件截图
+- 游戏资产截图
+- 社交媒体收入截图
+- 其他财务相关截图
+
+### Q: 如何处理验证失败的截图？
+
+建议根据业务场景处理：
+
+- 高风险场景：拒绝或人工复核
+- 中风险场景：降权或提高阈值
+- 低风险场景：发出警告但允许通过
+
+### Q: 数据隐私如何保护？
+
+RealCap严格保护用户数据：
+
+- 截图仅用于验证，不保存原图
+- 验证结果仅返回概率评分
+- 用户可随时删除验证记录
+- 符合GDPR等隐私法规要求
+
+---
+
+## 获取帮助
+
+如有任何问题，可通过以下渠道获取帮助：
+
+- **技术支持**：support@realcap.app
+- **API文档**：/zh/docs/api
+- **GitHub Issues**：https://github.com/realcap/realcap-sdk/issues
+- **开发者社区**：https://community.realcap.app
+
+[获取报价](/pricing) | [注册使用](https://console.realcap.app)

@@ -1,18 +1,535 @@
 ---
 title: "RealCap Documentation"
-description: "Complete guide to using RealCap screenshot verification"
+description: "Complete guide to RealCap screenshot verification, from getting started to advanced integration"
 sections:
   - slug: "getting-started"
     name: "Getting Started"
     description: "Quick setup and first verification"
   - slug: "api"
     name: "API Reference"
-    description: "Complete API documentation"
+    description: "Complete API documentation and examples"
   - slug: "integration"
     name: "Integration Guides"
-    description: "Platform-specific integration"
+    description: "Platform-specific integration tutorials"
+  - slug: "sdk"
+    name: "SDK Usage"
+    description: "Client SDK development guide"
+  - slug: "best-practices"
+    name: "Best Practices"
+    description: "Verification workflow design recommendations"
 ---
 
 # RealCap Documentation
 
-Welcome to RealCap documentation. Learn how to integrate screenshot verification into your workflow.
+Welcome to RealCap screenshot verification documentation. This guide will help you understand the technology principles, complete system integration, and design effective verification workflows.
+
+## Documentation Navigation
+
+### Getting Started
+
+Perfect for first-time RealCap users to quickly complete their first verification experience.
+
+**Content Overview:**
+
+- RealCap product introduction
+- Registration and API key acquisition
+- First verification attempt
+- Verification result interpretation
+
+[Read Getting Started Guide](#getting-started)
+
+### API Reference
+
+Complete API documentation for developer integration.
+
+**Content Overview:**
+
+- API authentication and authorization
+- Verification request format
+- Verification response structure
+- Error handling guide
+- Batch verification API
+- Webhook callback configuration
+
+[Read API Reference](#api)
+
+### Integration Guides
+
+Platform-specific and industry integration tutorials.
+
+**Content Overview:**
+
+- Lending platform integration guide
+- MCN agency integration guide
+- Dating platform integration guide
+- Rental platform integration guide
+- Gaming platform integration guide
+
+[Read Integration Guides](#integration)
+
+### SDK Usage
+
+SDK development guide for client developers.
+
+**Content Overview:**
+
+- Web SDK usage
+- iOS SDK development
+- Android SDK development
+- Trusted screenshot capture
+- User interface design
+
+[Read SDK Usage](#sdk)
+
+### Best Practices
+
+Best practices for product and operations teams designing verification workflows.
+
+**Content Overview:**
+
+- Verification workflow design
+- Verification result processing strategies
+- Risk control system integration
+- User experience optimization
+- Performance monitoring and analysis
+
+[Read Best Practices](#best-practices)
+
+---
+
+## Getting Started {#getting-started}
+
+### What is RealCap?
+
+RealCap is a professional screenshot verification tool that employs a "trusted source + multi-dimensional verification" technical architecture to help platforms verify the authenticity of user-uploaded screenshots.
+
+**Core Capabilities:**
+
+| Capability | Description |
+|------------|-------------|
+| AI Forgery Detection | Detects AI-generated fake screenshots |
+| Edit/Tamper Detection | Detects Photoshop and other tool modifications |
+| Source Trust Verification | Verifies whether screenshots were captured via trusted channels |
+| Data Logic Analysis | Analyzes screenshot data rationality |
+
+**Use Cases:**
+
+- Lending platforms: Verify borrower financial screenshots
+- MCN agencies: Verify influencer income claims
+- Dating platforms: Verify user identity and financial claims
+- Rental platforms: Verify tenant income proof
+- Gaming platforms: Verify virtual asset ownership
+
+### Registration and API Key Acquisition
+
+**Step 1: Register Account**
+
+Visit [RealCap Console](https://console.realcap.app) and register a developer account.
+
+**Step 2: Create Project**
+
+Create a new project in the console, filling in project information:
+
+- Project name
+- Project type (Lending/MCN/Dating/Rental/Gaming)
+- Estimated verification volume
+
+**Step 3: Obtain API Key**
+
+After project creation, obtain API keys:
+
+- API Key: Used for request authentication
+- Secret Key: Used for signature verification (optional)
+
+**Step 4: Configure Verification Parameters**
+
+Configure verification parameters based on project requirements:
+
+- Verification type: Select screenshot types to verify
+- Verification strength: Select detection precision level
+- Callback configuration: Set Webhook callback URL
+
+### First Verification Attempt
+
+Perform your first verification using the API:
+
+```bash
+curl -X POST https://api.realcap.app/v1/verify \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "verificationType": "bank_balance",
+    "screenshot": "base64_encoded_image",
+    "metadata": {
+      "declaredAmount": 100000,
+      "declaredBank": "Industrial Bank"
+    }
+  }'
+```
+
+### Verification Result Interpretation
+
+Verification response example:
+
+```json
+{
+  "verificationId": "verify_abc123",
+  "status": "verified",
+  "fraudProbability": 0.02,
+  "confidence": 0.99,
+  "issues": [],
+  "details": {
+    "sourceVerified": true,
+    "aiGenerated": false,
+    "edited": false,
+    "dataConsistent": true
+  },
+  "recommendation": "approve",
+  "processingTime": 480
+}
+```
+
+**Result Field Explanation:**
+
+| Field | Description |
+|-------|-------------|
+| status | Verification status: verified/failed/review |
+| fraudProbability | Fraud probability: between 0-1 |
+| confidence | Confidence level: between 0-1 |
+| issues | List of detected issues |
+| recommendation | Recommended action: approve/reject/review |
+
+---
+
+## API Reference {#api}
+
+### API Authentication
+
+All API requests require authentication information:
+
+```javascript
+// Header authentication
+Authorization: Bearer YOUR_API_KEY
+
+// Or signature authentication (higher security)
+Authorization: Bearer YOUR_API_KEY
+X-Signature: sha256_signature
+X-Timestamp: request_timestamp
+```
+
+### Verification Request
+
+**Request Endpoint:**
+
+```
+POST https://api.realcap.app/v1/verify
+```
+
+**Request Parameters:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| verificationType | string | Yes | Verification type |
+| screenshot | string | Yes | Screenshot data (base64 or URL) |
+| metadata | object | No | Metadata information |
+| callbackUrl | string | No | Webhook callback URL |
+
+**Verification Type List:**
+
+| Type | Description |
+|------|-------------|
+| bank_balance | Bank balance screenshot |
+| income_proof | Income proof screenshot |
+| identity_document | Identity document screenshot |
+| gaming_asset | Gaming asset screenshot |
+| social_media_income | Social media income screenshot |
+
+### Verification Response
+
+**Response Structure:**
+
+```json
+{
+  "verificationId": "string",
+  "status": "verified | failed | review",
+  "fraudProbability": "number",
+  "confidence": "number",
+  "issues": [
+    {
+      "type": "string",
+      "severity": "high | medium | low",
+      "description": "string"
+    }
+  ],
+  "details": {
+    "sourceVerified": "boolean",
+    "aiGenerated": "boolean",
+    "edited": "boolean",
+    "dataConsistent": "boolean",
+    "metadataMatch": "boolean"
+  },
+  "recommendation": "approve | reject | review",
+  "processingTime": "number (ms)"
+}
+```
+
+### Batch Verification API
+
+Suitable for large-scale screenshot verification scenarios:
+
+```javascript
+// Batch verification request
+POST https://api.realcap.app/v1/verify/batch
+
+{
+  "verifications": [
+    { "verificationType": "bank_balance", "screenshot": "..." },
+    { "verificationType": "income_proof", "screenshot": "..." }
+  ],
+  "callbackUrl": "https://your-platform.com/webhook"
+}
+```
+
+### Webhook Callback
+
+Receive verification results via Webhook after completion:
+
+**Callback Request Format:**
+
+```json
+{
+  "verificationId": "verify_abc123",
+  "status": "verified",
+  "fraudProbability": 0.02,
+  "timestamp": "2026-04-30T10:00:00Z",
+  "signature": "sha256_signature"
+}
+```
+
+---
+
+## Integration Guides {#integration}
+
+### Lending Platform Integration
+
+**Recommended Integration Process:**
+
+1. Embed RealCap screenshot capture in loan application page
+2. Automatically verify when user submits financial screenshots
+3. Adjust risk scoring based on verification results
+4. Archive verification results for subsequent review
+
+**Key Configuration:**
+
+| Configuration | Recommended Value |
+|---------------|-------------------|
+| Verification type | bank_balance, income_proof |
+| Verification strength | high |
+| Callback enabled | Yes |
+| Review threshold | fraudProbability > 0.3 |
+
+[View Complete Lending Integration Guide](/solutions/lending)
+
+### MCN Agency Integration
+
+**Recommended Integration Process:**
+
+1. Embed verification in influencer signing process
+2. Require trusted income screenshots before signing
+3. Incorporate verification results into signing decisions
+4. Establish influencer verification database
+
+**Key Configuration:**
+
+| Configuration | Recommended Value |
+|---------------|-------------------|
+| Verification type | social_media_income, gaming_asset |
+| Verification strength | high |
+| Identity verification | Enabled |
+| Blacklist integration | Enabled |
+
+[View Complete MCN Integration Guide](/solutions/mcn)
+
+---
+
+## SDK Usage {#sdk}
+
+### Web SDK
+
+Capture trusted screenshots in browser:
+
+```html
+<script src="https://cdn.realcap.app/sdk/web/latest/realcap.min.js"></script>
+<script>
+  const realcap = new RealCap.WebSDK({
+    apiKey: 'YOUR_API_KEY',
+    container: '#realcap-container'
+  });
+
+  // Capture trusted screenshot
+  realcap.capture().then(result => {
+    // result contains encrypted signed screenshot
+    console.log(result.verificationId);
+    console.log(result.signedScreenshot);
+  });
+</script>
+```
+
+### iOS SDK
+
+Integration in iOS application:
+
+```swift
+import RealCapSDK
+
+let realcap = RealCapSDK(apiKey: "YOUR_API_KEY")
+
+// Capture trusted screenshot
+realcap.captureScreenshot { result in
+    switch result {
+    case .success(let capture):
+        print("Verification ID: \(capture.verificationId)")
+        // Upload signed screenshot
+    case .failure(let error):
+        print("Capture failed: \(error)")
+    }
+}
+```
+
+### Android SDK
+
+Integration in Android application:
+
+```java
+import com.realcap.sdk.RealCapSDK;
+
+RealCapSDK realcap = new RealCapSDK("YOUR_API_KEY");
+
+// Capture trusted screenshot
+realcap.captureScreenshot(new RealCapSDK.CaptureCallback() {
+    @Override
+    public void onSuccess(CaptureResult result) {
+        String verificationId = result.getVerificationId();
+        String signedScreenshot = result.getSignedScreenshot();
+        // Upload for verification
+    }
+
+    @Override
+    public void onFailure(Exception error) {
+        // Handle error
+    }
+});
+```
+
+---
+
+## Best Practices {#best-practices}
+
+### Verification Workflow Design
+
+**Workflow Design Principles:**
+
+1. **Verification Upfront**: Verify at the moment of screenshot submission
+2. **Progressive Verification**: Simplified verification for low-risk scenarios, comprehensive for high-risk
+3. **Review Mechanism**: Retain manual review for edge cases
+4. **Result Integration**: Clearly link verification results with business decisions
+
+**Typical Verification Workflow:**
+
+```
+User upload screenshot -> Auto verification -> Verification result -> Business decision
+        ↓                     ↓                 ↓                  ↓
+   Trusted capture        Three-layer detection  Probability score  Approve/Reject/Review
+                         Source verification    Issue list         Risk adjustment
+                         Content verification   Confidence         User notification
+                         AI detection
+```
+
+### Verification Result Processing
+
+**Recommended Processing Strategies:**
+
+| Verification Result | fraudProbability | Processing Strategy |
+|---------------------|------------------|---------------------|
+| verified | < 0.1 | Normal approval |
+| review | 0.1 - 0.3 | Manual review |
+| failed | > 0.3 | Reject or significant downgrade |
+
+### User Experience Optimization
+
+**Optimization Recommendations:**
+
+1. **Clear Explanation**: Inform users of verification purpose and process
+2. **Simple Operation**: Provide friendly screenshot operation guidance
+3. **Quick Feedback**: Real-time verification result return
+4. **Privacy Protection**: Clarify data is only used for verification
+
+### Performance Monitoring
+
+**Key Monitoring Metrics:**
+
+| Metric | Description | Monitoring Frequency |
+|--------|-------------|---------------------|
+| Verification accuracy | Consistency of results with actual situation | Weekly |
+| Fraud detection rate | Successfully identified fraud proportion | Weekly |
+| False rejection rate | Incorrectly rejected real screenshots proportion | Weekly |
+| False approval rate | Incorrectly approved fake screenshots proportion | Weekly |
+| Verification time | Average verification processing time | Daily |
+
+---
+
+## Frequently Asked Questions {#faq}
+
+### Q: What is RealCap verification accuracy?
+
+RealCap verification accuracy across various screenshot types:
+
+- AI forgery detection: 99.9%
+- Edit/tamper detection: 99.5%
+- Source trust verification: 99.8%
+- Data logic analysis: 95%
+
+### Q: How long does verification take?
+
+Single verification typically completes within 500 milliseconds. Batch verification may take 1-5 seconds depending on quantity.
+
+### Q: What screenshot types are supported?
+
+Supported screenshot types include:
+
+- Bank balance screenshots
+- Income proof screenshots
+- Identity document screenshots
+- Gaming asset screenshots
+- Social media income screenshots
+- Other financial-related screenshots
+
+### Q: How to handle failed verification screenshots?
+
+Recommended handling based on business scenario:
+
+- High-risk scenarios: Reject or manual review
+- Medium-risk scenarios: Downgrade or raise threshold
+- Low-risk scenarios: Issue warning but allow pass
+
+### Q: How is data privacy protected?
+
+RealCap strictly protects user data:
+
+- Screenshots only used for verification, original not saved
+- Verification results only return probability scores
+- Users can delete verification records anytime
+- Compliant with GDPR and other privacy regulations
+
+---
+
+## Getting Help
+
+For any questions, get help through these channels:
+
+- **Technical Support**: support@realcap.app
+- **API Documentation**: /docs/api
+- **GitHub Issues**: https://github.com/realcap/realcap-sdk/issues
+- **Developer Community**: https://community.realcap.app
+
+[Get Quote](/pricing) | [Register Now](https://console.realcap.app)

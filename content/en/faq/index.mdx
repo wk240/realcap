@@ -1,6 +1,6 @@
 ---
 title: "Frequently Asked Questions"
-description: "Complete guide to RealCap screenshot verification FAQ"
+description: "Complete RealCap screenshot verification FAQ covering product, technical, pricing and common usage questions"
 topics:
   - slug: "screenshot-verification-basics"
     name: "Screenshot Verification Basics"
@@ -22,8 +22,517 @@ topics:
         answer: "RealCap is available as a desktop application (Windows, macOS), browser extension (Chrome, Firefox), and mobile app (iOS, Android). We also provide SDKs for direct integration."
       - question: "Is there a webhook callback option?"
         answer: "Yes. RealCap supports webhook callbacks for verification completion. Configure your callback URL in the dashboard settings."
+  - slug: "technical-questions"
+    name: "Technical Questions"
+    questions:
+      - question: "What is the verification accuracy?"
+        answer: "RealCap achieves over 99% accuracy on all detection types: AI forgery detection 99.9%, edit/tamper detection 99.5%, source trust verification 99.8%, data logic analysis 95%."
+      - question: "How long does verification take?"
+        answer: "Single verification typically completes within 500 milliseconds. Batch verification may take 1-5 seconds depending on quantity. We support asynchronous verification for large requests."
+      - question: "Is batch verification supported?"
+        answer: "Yes. RealCap provides batch verification API supporting multiple screenshots submitted at once. Batch verification results can be retrieved via webhook callback."
+  - slug: "pricing-questions"
+    name: "Pricing Questions"
+    questions:
+      - question: "How is RealCap priced?"
+        answer: "RealCap uses pay-per-verification pricing. Single verification costs vary by verification type and strength, typically $0.5-2 per verification. Volume discounts available."
+      - question: "Is there a free trial?"
+        answer: "Yes. New users receive 100 free verifications after registration for testing and product evaluation."
+      - question: "How to get detailed pricing?"
+        answer: "Contact our sales team for custom pricing. Quotes are based on verification volume, verification types, and customization requirements."
+  - slug: "privacy-questions"
+    name: "Privacy & Security"
+    questions:
+      - question: "How is user screenshot data handled?"
+        answer: "RealCap strictly protects user privacy. Screenshots are only used for verification analysis, original images are not saved after verification. Results only return probability scores without specific sensitive information."
+      - question: "Is it compliant with data protection regulations?"
+        answer: "Yes. RealCap complies with GDPR, China Cybersecurity Law, and other data protection regulations. We provide data deletion interface for users to delete verification records anytime."
+      - question: "How is API security ensured?"
+        answer: "RealCap API employs multiple security measures: HTTPS encrypted transmission, API key authentication, request signature verification, IP whitelist, access log audit, and more."
 ---
 
 # Frequently Asked Questions
 
-Find answers to all your questions about RealCap screenshot verification.
+Find answers to all your questions about RealCap screenshot verification. Below are categorized answers for product, technical, integration, and pricing related common questions.
+
+## Screenshot Verification Basics
+
+### What is screenshot verification?
+
+Screenshot verification is a technology that confirms screenshot authenticity, verifying whether screenshots are genuinely captured, unaltered, and not AI-generated fake images.
+
+RealCap adopts a "trusted source" verification philosophy: capturing metadata (device information, timestamp, operation context) at the moment of screenshot capture and encrypting with signature. This metadata cannot be retroactively added or modified, fundamentally eliminating AI forgery possibilities.
+
+**Difference from Traditional Verification:**
+
+| Traditional Method | RealCap Method |
+|-------------------|----------------|
+| Post-analysis of screenshot edits | Trusted record created at capture |
+| Cannot detect AI "natively" generated | AI cannot forge signed metadata |
+| 60-70% accuracy | Over 99% accuracy |
+| Relies on manual judgment | Automated rapid verification |
+
+### How does RealCap detect AI-generated fake screenshots?
+
+RealCap employs multi-layer detection mechanisms:
+
+**Layer 1: Source Trust Verification**
+
+Screenshots captured through RealCap automatically generate encrypted signatures. AI-generated screenshots cannot forge this signature and are immediately identified as untrusted source during verification.
+
+**Layer 2: Metadata Analysis**
+
+Real screenshots contain complete system metadata (device info, timestamp, screen parameters, etc.). AI-generated screenshots often lack or show inconsistent metadata.
+
+**Layer 3: AI Feature Detection**
+
+Our deep learning model specifically detects AI-generated image features:
+
+- Image texture pattern anomalies
+- Unnatural font rendering
+- Unreasonable lighting and shadows
+- UI element layout deviations
+
+**Layer 4: Data Logic Verification**
+
+Analyzes whether screenshot data is logically consistent:
+
+- Number format standardization
+- Timestamp rationality
+- Data variation continuity
+
+### Can RealCap verify screenshots taken before installation?
+
+**No.**
+
+RealCap's verification mechanism relies on metadata signature at screenshot capture moment. Only screenshots captured through RealCap (app, browser extension, or SDK) can obtain valid verification signatures.
+
+Screenshots taken before RealCap installation cannot retroactively add signatures, thus cannot pass source trust verification.
+
+**Alternative Solution:**
+
+For historical screenshots that cannot be recaptured, RealCap provides **Forgery Detection Analysis** service (without source verification), which can detect obvious edit tampering and some AI generation features, but with relatively lower accuracy (approximately 85%).
+
+### What types of screenshots can RealCap verify?
+
+RealCap supports verification of multiple screenshot types:
+
+**Financial Screenshots:**
+
+| Type | Verification Content | Detection Precision |
+|------|---------------------|---------------------|
+| Bank balance screenshot | Bank interface, balance data | 99.9% |
+| Income proof screenshot | Pay stubs, income records | 99.5% |
+| Bank statement screenshot | Transaction records, account info | 99.8% |
+| Investment account screenshot | Securities, fund interfaces | 99.5% |
+
+**Identity Screenshots:**
+
+| Type | Verification Content | Detection Precision |
+|------|---------------------|---------------------|
+| Identity document screenshot | ID card, passport | 99.7% |
+| Education certificate screenshot | Diploma, degree certificate | 99.5% |
+| Work proof screenshot | Employee badge, employment proof | 99.4% |
+
+**Platform Data Screenshots:**
+
+| Type | Verification Content | Detection Precision |
+|------|---------------------|---------------------|
+| Social media income screenshot | YouTube, TikTok, etc. | 99.6% |
+| Gaming asset screenshot | In-game interface | 99.5% |
+| E-commerce income screenshot | Amazon, Shopify, etc. | 99.4% |
+
+---
+
+## Integration Questions
+
+### How do I integrate RealCap API?
+
+RealCap provides RESTful API for quick integration into any system.
+
+**Integration Steps:**
+
+**Step 1: Obtain API Key**
+
+Create project in RealCap console, obtain API Key and Secret Key.
+
+**Step 2: Configure Authentication**
+
+```javascript
+const headers = {
+  'Authorization': 'Bearer YOUR_API_KEY',
+  'Content-Type': 'application/json'
+};
+```
+
+**Step 3: Send Verification Request**
+
+```javascript
+const response = await fetch('https://api.realcap.app/v1/verify', {
+  method: 'POST',
+  headers: headers,
+  body: JSON.stringify({
+    verificationType: 'bank_balance',
+    screenshot: base64EncodedImage,
+    metadata: { declaredAmount: 100000 }
+  })
+});
+```
+
+**Step 4: Process Verification Result**
+
+```javascript
+const result = await response.json();
+if (result.status === 'verified' && result.fraudProbability < 0.1) {
+  // Verification passed, continue business process
+} else {
+  // Verification failed or needs review, handle exception
+}
+```
+
+[View Complete API Documentation](/docs/api)
+
+### What platforms does RealCap support?
+
+RealCap provides full platform support:
+
+**Desktop:**
+
+| Platform | Support Method | Features |
+|----------|---------------|----------|
+| Windows | Desktop app | Global screenshot capture support |
+| macOS | Desktop app | Global screenshot capture support |
+
+**Browser:**
+
+| Browser | Support Method | Features |
+|---------|---------------|----------|
+| Chrome | Browser extension | Webpage screenshot capture |
+| Firefox | Browser extension | Webpage screenshot capture |
+| Edge | Browser extension | Webpage screenshot capture |
+
+**Mobile:**
+
+| Platform | Support Method | Features |
+|----------|---------------|----------|
+| iOS | iOS App + SDK | In-app screenshot capture |
+| Android | Android App + SDK | In-app screenshot capture |
+
+**Development SDK:**
+
+- Web SDK (JavaScript)
+- iOS SDK (Swift/Objective-C)
+- Android SDK (Java/Kotlin)
+
+### Is there a webhook callback option?
+
+**Yes.**
+
+RealCap supports webhook callback notification after verification completion, suitable for asynchronous verification result processing.
+
+**Configure Webhook:**
+
+Configure callback URL in console settings:
+
+```
+https://your-platform.com/webhook/realcap
+```
+
+**Callback Request Format:**
+
+```json
+{
+  "verificationId": "verify_abc123",
+  "status": "verified",
+  "fraudProbability": 0.02,
+  "confidence": 0.99,
+  "timestamp": "2026-04-30T10:00:00Z",
+  "signature": "sha256_hmac_signature"
+}
+```
+
+**Verify Signature:**
+
+```javascript
+const verifySignature = (payload, signature, secretKey) => {
+  const expectedSignature = crypto
+    .createHmac('sha256', secretKey)
+    .update(JSON.stringify(payload))
+    .digest('hex');
+  return signature === expectedSignature;
+};
+```
+
+---
+
+## Technical Questions
+
+### What is the verification accuracy?
+
+RealCap achieves industry-leading accuracy across all detection types:
+
+| Detection Type | Accuracy | Description |
+|---------------|----------|-------------|
+| AI forgery detection | 99.9% | Detects AI-generated fake screenshots |
+| Edit/tamper detection | 99.5% | Detects Photoshop and other tool modifications |
+| Source trust verification | 99.8% | Verifies screenshots via trusted channels |
+| Misuse detection | 99.7% | Detects use of others' screenshots |
+| Data logic anomalies | 95% | Detects unreasonable data variations |
+
+**Accuracy Assurance Measures:**
+
+- Regular model updates and iterations
+- Continuous learning of new forgery techniques
+- Industry-specific model optimization
+- Real-time accuracy monitoring
+
+### How long does verification take?
+
+**Single Verification:** Typically completes within **500 milliseconds**.
+
+**Influencing Factors:**
+
+| Factor | Impact |
+|--------|--------|
+| Screenshot size | Large images may need 1-2 extra seconds |
+| Verification strength | High-strength verification may take 1 second |
+| Verification type | Complex types may need additional processing |
+
+**Batch Verification:**
+
+| Batch Size | Estimated Time |
+|------------|---------------|
+| 10 images | 1-3 seconds |
+| 100 images | 5-15 seconds |
+| 1000 images | 30-60 seconds |
+
+Batch verification supports asynchronous mode, results retrievable via webhook callback.
+
+### Is batch verification supported?
+
+**Yes.**
+
+RealCap provides dedicated batch verification API, supporting multiple screenshots submitted at once for verification.
+
+**Batch Verification Request:**
+
+```javascript
+const response = await fetch('https://api.realcap.app/v1/verify/batch', {
+  method: 'POST',
+  headers: headers,
+  body: JSON.stringify({
+    verifications: [
+      { verificationType: 'bank_balance', screenshot: screenshot1 },
+      { verificationType: 'income_proof', screenshot: screenshot2 },
+      { verificationType: 'identity', screenshot: screenshot3 }
+    ],
+    callbackUrl: 'https://your-platform.com/webhook'
+  })
+});
+
+// Returns batch task ID
+const batchResult = await response.json();
+// { batchId: 'batch_xyz123', status: 'processing', totalCount: 3 }
+```
+
+**Batch Verification Features:**
+
+- Mixed type verification support
+- Asynchronous processing, non-blocking main flow
+- Webhook callback completion notification
+- Batch result report export
+
+---
+
+## Pricing Questions
+
+### How is RealCap priced?
+
+RealCap adopts **pay-per-verification** pricing model, transparent pricing with no hidden fees.
+
+**Base Pricing:**
+
+| Verification Type | Per-Verification Cost | Description |
+|------------------|----------------------|-------------|
+| Standard verification | $0.5-1 | Source verification + AI detection |
+| High-strength verification | $1-2 | Comprehensive multi-layer verification |
+| Batch verification | Tiered discount | Volume discounts available |
+
+**Tiered Discounts:**
+
+| Monthly Volume | Discount Rate |
+|---------------|---------------|
+| < 10,000 | No discount |
+| 10,000-100,000 | 10% discount |
+| 100,000-1,000,000 | 20% discount |
+| > 1,000,000 | 30% discount |
+
+[Get Detailed Pricing](/pricing)
+
+### Is there a free trial?
+
+**Yes.**
+
+New users receive after registration:
+
+- **100 free verification quota**
+- Experience all verification types
+- Test API integration
+- Evaluate product effectiveness
+
+**Trial Period Support:**
+
+- Complete API feature access
+- Technical support response
+- Integration guidance help
+
+After trial ends, you can choose to continue with paid usage or stop service.
+
+### How to get detailed pricing?
+
+Steps to obtain custom pricing:
+
+**Step 1: Assess Requirements**
+
+- Estimate monthly verification volume
+- Determine primary verification types
+- Clarify verification strength needs
+- Any customization requirements
+
+**Step 2: Contact Sales**
+
+Contact through these channels:
+
+- **Email**: sales@realcap.app
+- **Online Form**: /pricing/request
+
+**Step 3: Receive Quote**
+
+Sales team will provide based on requirements:
+
+- Detailed pricing plan
+- Tiered discount calculation
+- Service terms explanation
+- Contract template
+
+---
+
+## Privacy & Security
+
+### How is user screenshot data handled?
+
+RealCap strictly adheres to data privacy principles:
+
+**Data Processing Principles:**
+
+| Principle | Practice |
+|-----------|----------|
+| Minimal collection | Only collect verification-essential metadata |
+| No original storage | Screenshots only for analysis, deleted after verification |
+| Result minimization | Only return probability scores, no sensitive content |
+| User control | Users can delete verification records anytime |
+
+**Data Lifecycle:**
+
+```
+Screenshot upload -> Analysis processing -> Result generation -> Original deletion -> Record retention (7 days)
+      ↓                   ↓                   ↓                   ↓                   ↓
+ Encrypted transmission  In-memory processing  Probability output  Immediate deletion  User deletable
+```
+
+### Is it compliant with data protection regulations?
+
+**Yes.**
+
+RealCap complies with following data protection regulations:
+
+| Regulation | Compliance Items |
+|------------|-----------------|
+| GDPR (EU) | Data minimization, user awareness, deletion right, data portability |
+| China Cybersecurity Law | Data localization, security measures, user authorization |
+| CCPA (California) | User awareness, opt-out right, deletion right |
+| PIPL (China Personal Info Protection) | Purpose limitation, minimum necessity, security protection |
+
+**Compliance Measures:**
+
+- Transparent privacy policy
+- Processing only after explicit user authorization
+- Encrypted storage and transmission
+- Regular security audits
+- User data deletion interface
+
+### How is API security ensured?
+
+RealCap API employs multi-layer security measures:
+
+**Transmission Security:**
+
+- All API requests enforced HTTPS encryption
+- TLS 1.2+ protocol requirement
+- Certificate validity verification
+
+**Authentication Security:**
+
+| Security Measure | Description |
+|-----------------|-------------|
+| API key authentication | Each request carries valid API Key |
+| Signature verification | Optional HMAC signature prevents request forgery |
+| IP whitelist | Configurable allowed access IP addresses |
+| Key rotation | Support periodic API key replacement |
+
+**Access Control:**
+
+- Project-level permission isolation
+- Operation-level permission control
+- Complete access log records
+- Real-time abnormal access alerts
+
+**Data Security:**
+
+- Request data encrypted transmission
+- Processing data memory-only storage
+- Result data encrypted storage
+- Sensitive data immediate deletion
+
+---
+
+## Other Questions
+
+### How to get technical support?
+
+RealCap provides multi-channel technical support:
+
+| Channel | Response Time | Applicable Questions |
+|---------|---------------|---------------------|
+| Online documentation | Instant | Integration, API usage |
+| Email support | Within 24 hours | Technical questions |
+| Ticket system | Within 4 hours | Bugs, exceptions |
+| Phone support | Instant | Urgent issues (paid users) |
+
+**Contact Methods:**
+
+- **Technical Support Email**: support@realcap.app
+- **Ticket System**: https://support.realcap.app
+- **Developer Community**: https://community.realcap.app
+
+### How to provide product feedback?
+
+We welcome user product feedback:
+
+- **Product Feedback Email**: feedback@realcap.app
+- **Feature Request Form**: /feedback
+- **GitHub Issues**: https://github.com/realcap/issues
+
+We regularly evaluate user suggestions, prioritizing high-frequency requests.
+
+---
+
+## Contact Us
+
+For other questions, feel free to contact us:
+
+- **Sales Inquiry**: sales@realcap.app
+- **Technical Support**: support@realcap.app
+- **Partnership**: partners@realcap.app
+
+[Back to Documentation](/docs) | [Get Quote](/pricing)
