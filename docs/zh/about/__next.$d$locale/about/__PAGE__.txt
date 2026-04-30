@@ -1,5 +1,0 @@
-1:"$Sreact.fragment"
-2:I[97367,["/_next/static/chunks/18dya1.0omc0k.js"],"OutletBoundary"]
-3:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-12","children":[["$","h1",null,{"className":"text-3xl font-bold text-gray-900 mb-8","children":"关于RealCap"}],["$","div",null,{"className":"prose prose-lg","children":[["$","p",null,{"children":"RealCap是一款可信截图工具，防止AI伪造并支持验证。我们帮助组织验证截图真实性并防止欺诈。"}],["$","h2",null,{"children":"我们的使命"}],["$","p",null,{"children":"通过提供可靠的截图验证技术，建立数字证据的信任。"}],["$","h2",null,{"children":"联系方式"}],["$","p",null,{"children":["Email: support@realcap.app",["$","br",null,{}],"Twitter: @wen_nkang",["$","br",null,{}],"GitHub: wk240/realcap"]}]]}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"n9XLzySWlhjqWfUiKCHij"}
-4:null
