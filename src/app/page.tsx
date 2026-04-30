@@ -1,16 +1,35 @@
-'use client';
+import { setRequestLocale } from 'next-intl/server';
+import { RedirectChinese } from '@/components/RedirectChinese';
+import { HeroSection } from '@/components/home/HeroSection';
+import { TrustProblemSection } from '@/components/home/TrustProblemSection';
+import { HowItWorksSection } from '@/components/home/HowItWorksSection';
+import { CoreFeaturesSection } from '@/components/home/CoreFeaturesSection';
+import { TargetIndustriesSection } from '@/components/home/TargetIndustriesSection';
+import { UseCasesSection } from '@/components/home/UseCasesSection';
+import { DataCaseSection } from '@/components/home/DataCaseSection';
+import { FAQPreviewSection } from '@/components/home/FAQPreviewSection';
+import { BottomCTASection } from '@/components/home/BottomCTASection';
+import { getHomeContent } from '@/lib/content/home';
+import { getAllFAQQuestions } from '@/lib/content/faq';
 
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+export default async function RootPage() {
+  setRequestLocale('en');
 
-export default function RootPage() {
-  const router = useRouter();
+  const homeContent = getHomeContent('en');
+  const faqQuestions = getAllFAQQuestions('en');
 
-  useEffect(() => {
-    const lang = navigator.language.toLowerCase();
-    const locale = lang.startsWith('zh') ? 'zh' : 'en';
-    router.replace(`/${locale}`);
-  }, [router]);
-
-  return null;
+  return (
+    <>
+      <RedirectChinese />
+      <HeroSection />
+      <TrustProblemSection problems={homeContent.frontmatter.problems} />
+      <HowItWorksSection />
+      <CoreFeaturesSection />
+      <TargetIndustriesSection />
+      <UseCasesSection useCases={homeContent.frontmatter.useCases} />
+      <DataCaseSection />
+      <FAQPreviewSection questions={faqQuestions} />
+      <BottomCTASection />
+    </>
+  );
 }
