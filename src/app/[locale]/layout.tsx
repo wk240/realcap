@@ -2,6 +2,8 @@ import { locales, type Locale } from '@/i18n.config';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale, getMessages } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
 import { OrganizationSchema } from '@/components/seo/OrganizationSchema';
 import { WebSiteSchema } from '@/components/seo/WebSiteSchema';
 import { SoftwareApplicationSchema } from '@/components/seo/SoftwareApplicationSchema';
@@ -75,7 +77,9 @@ export default async function LocaleLayout({
         <SoftwareApplicationSchema locale={locale} />
       </head>
       <NextIntlClientProvider locale={locale} messages={messages}>
-        {children}
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </NextIntlClientProvider>
     </>
   );
